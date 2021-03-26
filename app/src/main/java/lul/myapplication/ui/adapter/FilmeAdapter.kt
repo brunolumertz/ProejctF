@@ -23,7 +23,7 @@ class FilmeAdapter(
 ////            Glide.with(itemView).load(IMAGE_BASE + filme.poster).into(itemView.filme_poster)
 ////        }
 //    }
-aaaa
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmeViewHolder {
         val viewCriada = LayoutInflater.from(context).inflate(
             R.layout.filme_item,
