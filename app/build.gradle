@@ -73,4 +73,11 @@ dependencies {
     // room
     implementation "androidx.room:room-ktx:2.2.6"
     kapt  "androidx.room:room-compiler:2.2.6"
+
+    //Navi
+    def arch_version = "2.1.0"
+    def nav_version = "2.3.3"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "android.arch.lifecycle:extensions:$arch_version"
 }

@@ -1,25 +1,28 @@
 package lul.myapplication
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
-import lul.myapplication.models.Filme
-import lul.myapplication.models.FilmeResponse
-import lul.myapplication.services.ApiInterface
-import lul.myapplication.services.ApiService
-import lul.myapplication.ui.filme.FilmeFragment
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import androidx.navigation.ui.setupWithNavController
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        configuraNavController()
+
+    }
+
+    private fun configuraNavController() {
+        val navView: BottomNavigationView = findViewById(R.id.nav_view)
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.main_navi) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        navView.setupWithNavController(navController)
     }
 
 }

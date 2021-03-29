@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.filme_item.view.*
 import lul.myapplication.R
 import lul.myapplication.models.Filme
@@ -13,16 +14,8 @@ import lul.myapplication.models.Filme
 class FilmeAdapter(
     private val context: Context,
     private val filmes : MutableList<Filme> = mutableListOf(),
+    var onItemClickListener: (pokemon: Filme) -> Unit = {}
 ) : RecyclerView.Adapter<FilmeAdapter.FilmeViewHolder>(){
-
-//    class FilmeViewHolder(view : View) : RecyclerView.ViewHolder(view){
-//        private val IMAGE_BASE = "https://image.tmdb.org/t/p/w500/"
-////        fun bindFilme(filme : Filme){
-////            itemView.filme_titulo.text = filme.tittle
-////            itemView.data_lancamento.text = filme.release
-////            Glide.with(itemView).load(IMAGE_BASE + filme.poster).into(itemView.filme_poster)
-////        }
-//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmeViewHolder {
         val viewCriada = LayoutInflater.from(context).inflate(
@@ -34,7 +27,6 @@ class FilmeAdapter(
     }
 
     override fun onBindViewHolder(holder: FilmeViewHolder, position: Int) {
-//        holder.bindFilme(filmes[position])
         holder.vincula(filmes[position])
     }
 
@@ -50,26 +42,43 @@ class FilmeAdapter(
     inner class FilmeViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
 
+        private val IMAGE_BASE = "https://image.tmdb.org/t/p/w500/"
         private lateinit var filme: Filme
         private val campoTitulo by lazy { itemView.filme_titulo }
-        private val campoData by lazy { itemView.data_lancamento }
+//        private val campoData by lazy { itemView.data_lancamento }
 
-//        init {
-//            itemView.setOnClickListener {
-//                if(::filmes.isInitialized){
-//                    onItemClickListener(filmes)
-//                }
-//            }
-//        }
+        init {
+            itemView.setOnClickListener {
+                if(::filme.isInitialized){
+                    onItemClickListener(filme)
+                    Toast.makeText(context, filme.tittle, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
 
 
         fun vincula(filme: Filme) {
             this.filme = filme
             campoTitulo.text = filme.tittle
-            campoData.text = filme.release
-            Toast.makeText(context, filme.tittle, Toast.LENGTH_LONG).show()
+//            campoData.text = filme.release
+
+                itemView.filme_titulo.text = filme.tittle
+//                itemView.data_lancamento.text = filme.release
+                Glide.with(itemView).load(IMAGE_BASE + filme.poster).into(itemView.filme_poster)
+
+//            Toast.makeText(context, filme.tittle, Toast.LENGTH_LONG).show()
 
         }
 
     }
 }
+
+
+//    class FilmeViewHolder(view : View) : RecyclerView.ViewHolder(view){
+//        private val IMAGE_BASE = "https://image.tmdb.org/t/p/w500/"
+////        fun bindFilme(filme : Filme){
+////            itemView.filme_titulo.text = filme.tittle
+////            itemView.data_lancamento.text = filme.release
+////            Glide.with(itemView).load(IMAGE_BASE + filme.poster).into(itemView.filme_poster)
+////        }
+//    }

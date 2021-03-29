@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 
-@Parcelize
+//@Parcelize
 @Entity(tableName = "Filme")
 data class Filme (
     @PrimaryKey(autoGenerate = false)
@@ -16,15 +16,15 @@ data class Filme (
     val id : String,
 
     @SerializedName("title")
-    val tittle : String ?,
+    val tittle : String,
 
     @SerializedName("poster_path")
-    val poster : String ?,
+    val poster : String,
 
     @SerializedName("release_date")
-    val release : String ?
+    val release : String
+)
 
-
-) : Parcelable{
-    constructor() : this("","","","")
-}
+//) : Parcelable{
+//    constructor() : this("","","","")
+//}

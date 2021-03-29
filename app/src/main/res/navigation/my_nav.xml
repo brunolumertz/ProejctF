@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/filme_detalhes"
-        android:name="lul.myapplication.ui.detalhes.filme_detalhes"
+        android:name="lul.myapplication.ui.detalhes.DetalhesFilmeFragment"
         android:label="fragment_filme_detalhes"
         tools:layout="@layout/fragment_filme_detalhes" >
         <action

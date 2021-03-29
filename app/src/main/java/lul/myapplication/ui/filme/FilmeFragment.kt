@@ -9,10 +9,13 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_filme.*
 import lul.myapplication.ui.adapter.FilmeAdapter
 import lul.myapplication.MyApplication
 import lul.myapplication.R
+import lul.myapplication.models.Filme
+import lul.myapplication.ui.detalhes.DetalhesFilmeFragment
 
 class FilmeFragment : Fragment() {
 
@@ -47,9 +50,25 @@ class FilmeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configuraRecyclerView()
-//        configuraLista()
+        configuraLista()
 
+    }
 
+    private fun configuraLista() {
+        adapter?.onItemClickListener = {
+            goToDetails(it)
+        }
+        lista_filmes_rv.adapter = adapter
+        lista_filmes_rv.layoutManager = LinearLayoutManager(context)
+    }
+
+    private fun goToDetails(filme: Filme) {
+        val details = DetalhesFilmeFragment(filme)
+        val fragmentManager = activity?.supportFragmentManager
+        val transaction = fragmentManager?.beginTransaction()
+        transaction?.replace(R.id.fragment_discover_container, details)
+        transaction?.addToBackStack(null)
+        transaction?.commit()
     }
 
     private fun getFilmes() {
@@ -72,6 +91,8 @@ class FilmeFragment : Fragment() {
         lista_filmes_rv.addItemDecoration(divisor)
         lista_filmes_rv.adapter = adapter
     }
+
+
 
 }
 

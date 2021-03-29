@@ -4,11 +4,12 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-@Parcelize
+//@Parcelize
 data class FilmeResponse(
     @SerializedName("results")
     val filmes : List<Filme>
+)
 
-) : Parcelable{
-    constructor() : this(mutableListOf())
-}
+//) : Parcelable{
+//    constructor() : this(mutableListOf())
+//}

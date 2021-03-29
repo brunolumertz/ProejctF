@@ -1,7 +1,7 @@
 package lul.myapplication.repository
 
-import androidx.room.Dao
 import lul.myapplication.dao.FilmesDAO
+import lul.myapplication.models.Filme
 import lul.myapplication.models.FilmeResponse
 import lul.myapplication.services.ApiInterface
 import lul.myapplication.services.ApiService
@@ -15,5 +15,9 @@ class FilmesRepository (
     suspend fun getFilmesPopulares()
             :Response<FilmeResponse>{
         return api.getListaFilme()
+    }
+
+    suspend fun getFilmeDetalhes(id: String):Response<Filme>{
+        return api.getDetalhes()
     }
 }
