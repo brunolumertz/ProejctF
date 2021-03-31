@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.filme_item.view.*
@@ -13,9 +12,9 @@ import lul.myapplication.models.Filme
 
 class FilmeAdapter(
     private val context: Context,
-    private val filmes : MutableList<Filme> = mutableListOf(),
-    var onItemClickListener: (pokemon: Filme) -> Unit = {}
-) : RecyclerView.Adapter<FilmeAdapter.FilmeViewHolder>(){
+    private val filmes: MutableList<Filme> = mutableListOf(),
+    var onItemClickListener: (filme: Filme) -> Unit = {}
+) : RecyclerView.Adapter<FilmeAdapter.FilmeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmeViewHolder {
         val viewCriada = LayoutInflater.from(context).inflate(
@@ -49,9 +48,9 @@ class FilmeAdapter(
 
         init {
             itemView.setOnClickListener {
-                if(::filme.isInitialized){
+                if (::filme.isInitialized) {
                     onItemClickListener(filme)
-                    Toast.makeText(context, filme.tittle, Toast.LENGTH_LONG).show()
+//                    Toast.makeText(context, filme.tittle, Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -60,25 +59,14 @@ class FilmeAdapter(
         fun vincula(filme: Filme) {
             this.filme = filme
             campoTitulo.text = filme.tittle
-//            campoData.text = filme.release
-
-                itemView.filme_titulo.text = filme.tittle
-//                itemView.data_lancamento.text = filme.release
-                Glide.with(itemView).load(IMAGE_BASE + filme.poster).into(itemView.filme_poster)
-
-//            Toast.makeText(context, filme.tittle, Toast.LENGTH_LONG).show()
-
+            itemView.filme_titulo.text = filme.tittle
+            Glide.with(itemView).load(IMAGE_BASE + filme.poster).into(itemView.filme_poster)
+//          campoData.text = filme.release
+//          itemView.data_lancamento.text = filme.release
         }
 
     }
 }
 
 
-//    class FilmeViewHolder(view : View) : RecyclerView.ViewHolder(view){
-//        private val IMAGE_BASE = "https://image.tmdb.org/t/p/w500/"
-////        fun bindFilme(filme : Filme){
-////            itemView.filme_titulo.text = filme.tittle
-////            itemView.data_lancamento.text = filme.release
-////            Glide.with(itemView).load(IMAGE_BASE + filme.poster).into(itemView.filme_poster)
-////        }
-//    }
+

@@ -19,8 +19,6 @@
         android:name="lul.myapplication.ui.detalhes.DetalhesFilmeFragment"
         android:label="fragment_filme_detalhes"
         tools:layout="@layout/fragment_filme_detalhes" >
-        <action
-            android:id="@+id/action_filme_detalhes_to_filmeFragment"
-            app:destination="@id/filmeFragment" />
+
     </fragment>
 </navigation>

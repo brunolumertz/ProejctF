@@ -9,6 +9,6 @@ class DetalhesFilmeViewModelFactory (
     private val filmesrepository : FilmesRepository
 )   : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return FilmeViewModel(filmesrepository) as T
+        return DetalhesFilmeViewModel(filmesrepository) as T
     }
 }

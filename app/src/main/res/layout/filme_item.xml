@@ -29,6 +29,7 @@
         android:layout_marginTop="40dp"
         android:maxLines="2"
         android:text="Titulo do filme"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
