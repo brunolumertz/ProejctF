@@ -1,17 +1,31 @@
 package lul.myapplication.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
-import androidx.room.Query
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy.REPLACE
 import kotlinx.coroutines.flow.Flow
 import lul.myapplication.models.Filme
+import androidx.room.Query
 
 @Dao
 interface FilmesDAO {
 
-    @Query("SELECT * FROM Filme")
-    fun buscaCompleta(): Flow<List<Filme>>
+    @Insert(onConflict = REPLACE)
+    suspend fun salvaListaJaVi(filme: Filme)
 
-//    @Query("SELECT * FROM Filme WHERE id = :id")
-//    fun buscaPorId(id: String): LiveData<Filme>
+    @Insert(onConflict = REPLACE)
+    suspend fun salvaListaQueroVer(filme: Filme)
+
+    @Query("SELECT * FROM Filme WHERE status = 1")
+    fun buscaJaVi(): Flow<List<Filme>>
+
+    @Query("SELECT * FROM Filme WHERE status = 2")
+    fun buscaQueroVer(): Flow<List<Filme>>
+
+    @Delete
+    suspend fun deletaJaVi(filme: Filme)
+
+    @Delete
+    suspend fun deletaQueroVer(filme: Filme)
 }

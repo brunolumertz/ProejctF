@@ -19,7 +19,8 @@ data class Filme (
     @SerializedName("poster_path")
     val poster : String?,
     @SerializedName("release_date")
-    val release : String?
+    val release : String?,
+    var status: Int = 0
 
 ) : Serializable
 

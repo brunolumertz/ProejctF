@@ -6,7 +6,7 @@ import lul.myapplication.repository.FilmesRepository
 
 class MyApplication : Application() {
 
-    val database by lazy { DataBase.getDataBase(this) }
-    val repository by lazy { FilmesRepository() }
+    val database by lazy { DataBase.getDatabase(this) }
+    val repository by lazy { FilmesRepository(database.filmeDAO()) }
 
 }

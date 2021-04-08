@@ -14,6 +14,14 @@
             android:id="@+id/action_filmeFragment_to_filme_detalhes"
             app:destination="@id/filme_detalhes" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navi_mylist"
+        android:name="lul.myapplication.ui.minhalista.MinhaListaFragment"
+        android:label="@string/titulo_minhalista"
+        tools:layout="@layout/fragment_minhalista"/>
+
+
     <fragment
         android:id="@+id/filme_detalhes"
         android:name="lul.myapplication.ui.detalhes.DetalhesFilmeFragment"
@@ -21,4 +29,10 @@
         tools:layout="@layout/fragment_filme_detalhes" >
 
     </fragment>
+
+    <!--    <fragment-->
+<!--        android:id="@+id/minhalista"-->
+<!--        android:name="lul.myapplication.ui.minhalista.MinhalistaFragment"-->
+<!--        android:label="fragment_minhalista"-->
+<!--        tools:layout="@layout/fragment_minhalista" />-->
 </navigation>

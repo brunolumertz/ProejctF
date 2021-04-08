@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import lul.myapplication.models.Filme
 import lul.myapplication.models.FilmeDetalhes
-import lul.myapplication.models.FilmeResponse
 import lul.myapplication.repository.FilmesRepository
 import retrofit2.Response
 
@@ -20,6 +19,18 @@ class DetalhesFilmeViewModel (
         viewModelScope.launch {
             val response = filmesrepository.getFilmeDetalhes(id)
             fResponse.value = response
+        }
+    }
+
+    fun salvaListaJaVi(filme: Filme) {
+        viewModelScope.launch {
+            filmesrepository.salvaListaJaVi(filme)
+        }
+    }
+
+    fun salvaListaQueroVer(filme: Filme) {
+        viewModelScope.launch {
+            filmesrepository.salvaListaQueroVer(filme)
         }
     }
 }
