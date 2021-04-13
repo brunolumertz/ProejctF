@@ -38,6 +38,10 @@ class PesquisaAdapter(private val context: Context,
     inner class PesquisaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private lateinit var filme: Filme
 
+        private val IMAGE_BASE = "https://image.tmdb.org/t/p/w500/"
+        private val campoTitulo by lazy { view.filme_titulo }
+
+
         private val moviePoster by lazy {
             view.filme_poster
         }
@@ -56,6 +60,10 @@ class PesquisaAdapter(private val context: Context,
                 .load("https://image.tmdb.org/t/p/w500"+filme.poster)
                 .placeholder(R.drawable.ic_error)
                 .into(moviePoster)
+
+//            campoTitulo.text = filme.tittle
+//            itemView.filme_titulo.text = filme.tittle
+//            Glide.with(itemView).load(IMAGE_BASE + filme.poster).into(itemView.filme_poster)
         }
     }
 }

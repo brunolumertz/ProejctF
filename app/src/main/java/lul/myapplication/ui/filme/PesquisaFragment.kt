@@ -110,7 +110,7 @@ class PesquisaFragment : Fragment() {
         val details = DetalhesFilmeFragment(filme)
         val fragmentManager = activity?.supportFragmentManager
         val transaction = fragmentManager?.beginTransaction()
-        transaction?.replace(R.id.pesquisaFragment, details)
+        transaction?.replace(R.id.app_bar_search, details)
         transaction?.addToBackStack(null)
         transaction?.commit()
     }

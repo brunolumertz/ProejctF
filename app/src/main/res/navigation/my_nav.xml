@@ -27,10 +27,10 @@
         android:name="lul.myapplication.ui.detalhes.DetalhesFilmeFragment"
         android:label="fragment_filme_detalhes"
         tools:layout="@layout/fragment_filme_detalhes" >
-
     </fragment>
+
     <fragment
-        android:id="@+id/pesquisaFragment"
+        android:id="@+id/app_bar_search"
         android:name="lul.myapplication.ui.filme.PesquisaFragment"
         android:label="fragment_pesquisa"
         tools:layout="@layout/fragment_pesquisa" />
