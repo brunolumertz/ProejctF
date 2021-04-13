@@ -17,4 +17,5 @@ interface ApiInterface {
 
     @GET("search/movie")
     suspend fun getSearchMovie(@Query("query") keyword : String): Response<FilmeResponse>
+
 }

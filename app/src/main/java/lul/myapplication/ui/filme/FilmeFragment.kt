@@ -1,20 +1,16 @@
 package lul.myapplication.ui.filme
 
-import android.app.SearchManager
-import android.content.Context.SEARCH_SERVICE
 import android.os.Bundle
 import android.util.Log
-import android.view.*
-import android.widget.SearchView
-import androidx.appcompat.app.ActionBarDrawerToggle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_filme.*
 import lul.myapplication.MyApplication
-import lul.myapplication.QUERY_LENGTH
 import lul.myapplication.R
-import lul.myapplication.SEARCH_HINT
 import lul.myapplication.models.Filme
 import lul.myapplication.ui.adapter.FilmeAdapter
 import lul.myapplication.ui.detalhes.DetalhesFilmeFragment

@@ -37,11 +37,11 @@ class FilmeAdapter(
         notifyDataSetChanged()
     }
 
-    fun addPesquisa(filmes: List<Filme>){
-        this.filmes.clear()
-        this.filmes.addAll(filmes)
-        notifyDataSetChanged()
-    }
+//    fun addPesquisa(filmes: List<Filme>){
+//        this.filmes.clear()
+//        this.filmes.addAll(filmes)
+//        notifyDataSetChanged()
+//    }
 
     inner class FilmeViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -24,7 +23,7 @@ import lul.myapplication.ui.Resource
 import lul.myapplication.ui.adapter.PesquisaAdapter
 import lul.myapplication.ui.detalhes.DetalhesFilmeFragment
 
-class PesquisaFragment : Fragment(){
+class PesquisaFragment : Fragment() {
 
     private val viewModel: FilmeViewModel by viewModels {
         FilmeViewModelFactory((activity?.application as MyApplication).repository)
@@ -77,7 +76,8 @@ class PesquisaFragment : Fragment(){
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let { message ->
-                        Toast.makeText(activity, "Erro!: $message", Toast.LENGTH_SHORT
+                        Toast.makeText(
+                            activity, "Erro!: $message", Toast.LENGTH_SHORT
                         ).show()
                     }
                 }
@@ -100,17 +100,18 @@ class PesquisaFragment : Fragment(){
         adapter?.onItemClickListener = {
             goToMovieDetails(it)
         }
-        pesquisa_filme.adapter = adapter
-        pesquisa_filme.layoutManager = GridLayoutManager(context,3)
+        rv_pesquisa.adapter = adapter
+        rv_pesquisa.layoutManager = GridLayoutManager(context, 3)
     }
-//
+
+    //
     // Vai para o fragment Movie Details
     private fun goToMovieDetails(filme: Filme) {
-    val details = DetalhesFilmeFragment(filme)
-    val fragmentManager = activity?.supportFragmentManager
-    val transaction = fragmentManager?.beginTransaction()
-    transaction?.replace(R.id.pesquisaFragment, details)
-    transaction?.addToBackStack(null)
-    transaction?.commit()
+        val details = DetalhesFilmeFragment(filme)
+        val fragmentManager = activity?.supportFragmentManager
+        val transaction = fragmentManager?.beginTransaction()
+        transaction?.replace(R.id.pesquisaFragment, details)
+        transaction?.addToBackStack(null)
+        transaction?.commit()
     }
 }
