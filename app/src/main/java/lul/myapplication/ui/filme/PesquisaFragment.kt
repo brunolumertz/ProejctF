@@ -9,6 +9,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_pesquisa.*
 import kotlinx.coroutines.Job
@@ -104,14 +105,24 @@ class PesquisaFragment : Fragment() {
         rv_pesquisa.layoutManager = GridLayoutManager(context, 3)
     }
 
-    //
-    // Vai para o fragment Movie Details
+
+//     Vai para o fragment Movie Details
     private fun goToMovieDetails(filme: Filme) {
         val details = DetalhesFilmeFragment(filme)
         val fragmentManager = activity?.supportFragmentManager
         val transaction = fragmentManager?.beginTransaction()
-        transaction?.replace(R.id.app_bar_search, details)
+        transaction?.replace(R.id.item_filme, details)
         transaction?.addToBackStack(null)
         transaction?.commit()
     }
+
+//    private val controller by lazy {
+//        findNavController()
+//    }
+//
+//    private fun goToMovieDetails(filme: Filme) {
+//        val direction =
+//            PesquisaFragment.
+//        controller.navigate(direction)
+//    }
 }
