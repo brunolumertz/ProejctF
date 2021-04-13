@@ -7,6 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.filme.FilmeFragment">
 
+    <ProgressBar
+        android:id="@+id/progress_bar_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lista_filmes_rv"
         android:layout_width="0dp"

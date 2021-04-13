@@ -1,6 +1,5 @@
 package lul.myapplication.repository
 
-import androidx.lifecycle.LiveData
 import kotlinx.coroutines.flow.Flow
 import lul.myapplication.dao.FilmesDAO
 import lul.myapplication.models.Filme
@@ -47,5 +46,13 @@ class FilmesRepository (
         dao.salvaListaQueroVer(filme)
     }
 
+    suspend fun getFilmesPesquisa(keyword : String) : Response<FilmeResponse>{
+        return api.getSearchMovie(keyword)
+    }
+
+    // Busca os filmes pesquisados
+    suspend fun getSearchMovie(keyword: String): Response<FilmeResponse> {
+        return api.getSearchMovie(keyword)
+    }
 
 }

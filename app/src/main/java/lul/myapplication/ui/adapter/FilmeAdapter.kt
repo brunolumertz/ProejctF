@@ -29,10 +29,15 @@ class FilmeAdapter(
         holder.vincula(filmes[position])
     }
 
-
     override fun getItemCount(): Int = filmes.size
 
     fun add(filmes: List<Filme>) {
+        this.filmes.clear()
+        this.filmes.addAll(filmes)
+        notifyDataSetChanged()
+    }
+
+    fun addPesquisa(filmes: List<Filme>){
         this.filmes.clear()
         this.filmes.addAll(filmes)
         notifyDataSetChanged()

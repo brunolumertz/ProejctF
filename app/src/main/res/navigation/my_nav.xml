@@ -29,6 +29,11 @@
         tools:layout="@layout/fragment_filme_detalhes" >
 
     </fragment>
+    <fragment
+        android:id="@+id/pesquisaFragment"
+        android:name="lul.myapplication.ui.filme.PesquisaFragment"
+        android:label="fragment_pesquisa"
+        tools:layout="@layout/fragment_pesquisa" />
 
     <!--    <fragment-->
 <!--        android:id="@+id/minhalista"-->

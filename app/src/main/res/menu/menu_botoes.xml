@@ -5,17 +5,20 @@
     <item
         android:id="@+id/filmeFragment"
         android:icon="@drawable/ic_home_action"
-        android:title="Tela inicial" />
+        android:title="Tela inicial"
+        app:showAsAction="ifRoom|collapseActionView"/>
 
     <item
         android:id="@+id/app_bar_search"
         android:icon="@drawable/ic_search_action"
         android:title="Pesquisar"
-        app:actionViewClass="android.widget.SearchView" />
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
 
     <item
         android:id="@+id/navi_mylist"
         android:icon="@drawable/ic_list_action"
-        android:title="Minha Lista" />
+        android:title="Minha Lista"
+        app:showAsAction="ifRoom|collapseActionView"/>
 
 </menu>

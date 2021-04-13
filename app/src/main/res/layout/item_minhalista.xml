@@ -58,11 +58,14 @@
                 android:id="@+id/nome_filme"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@id/filme_poster"
-                app:layout_constraintEnd_toStartOf="@id/deleta_filme"
-                app:layout_constraintTop_toTopOf="parent"
                 android:layout_margin="8dp"
+                android:textAlignment="center"
                 android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/deleta_filme"
+                app:layout_constraintStart_toEndOf="@id/filme_poster"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="Nome do filme aqui" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
