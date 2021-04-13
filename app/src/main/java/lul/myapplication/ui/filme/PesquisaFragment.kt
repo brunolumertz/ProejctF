@@ -105,13 +105,11 @@ class PesquisaFragment : Fragment() {
         rv_pesquisa.layoutManager = GridLayoutManager(context, 3)
     }
 
-
-//     Vai para o fragment Movie Details
     private fun goToMovieDetails(filme: Filme) {
         val details = DetalhesFilmeFragment(filme)
         val fragmentManager = activity?.supportFragmentManager
         val transaction = fragmentManager?.beginTransaction()
-        transaction?.replace(R.id.item_filme, details)
+        transaction?.replace(R.id.fragment_pesquisa_container, details)
         transaction?.addToBackStack(null)
         transaction?.commit()
     }
@@ -121,8 +119,7 @@ class PesquisaFragment : Fragment() {
 //    }
 //
 //    private fun goToMovieDetails(filme: Filme) {
-//        val direction =
-//            PesquisaFragment.
+//        val direction = PesquisaFragment.action_app_bar_search_to_filme_detalhes(filme)
 //        controller.navigate(direction)
 //    }
 }

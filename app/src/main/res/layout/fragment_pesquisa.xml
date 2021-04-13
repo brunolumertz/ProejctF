@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/fragment_pesquisa_container"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="lul.myapplication.ui.filme.PesquisaFragment">
 
@@ -19,6 +20,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_pesquisa"
         android:layout_width="match_parent"
+        android:background="@color/pale_black"
         android:layout_height="0dp"
         android:paddingBottom="50dp"
         android:clipToPadding="false"
@@ -32,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="invisible"
-        android:background="@android:color/transparent"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
