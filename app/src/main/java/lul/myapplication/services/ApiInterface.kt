@@ -16,6 +16,6 @@ interface ApiInterface {
     suspend fun getDetalhes(@Path("movie_id") id: Int): Response<FilmeDetalhes>
 
     @GET("search/movie")
-    suspend fun getSearchMovie(@Query("query") keyword : String): Response<FilmeResponse>
+    suspend fun getPesquisaFilme(@Query("query") keyword : String): Response<FilmeResponse>
 
 }

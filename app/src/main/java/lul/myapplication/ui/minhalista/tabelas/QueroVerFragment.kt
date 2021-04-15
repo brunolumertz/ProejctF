@@ -76,7 +76,7 @@ class QueroVerFragment: Fragment() {
     }
 
     private fun deletaFilmesQueroVer(filme: Filme){
-        MaterialAlertDialogBuilder(requireContext(),R.style.Theme_MaterialComponents_DayNight)
+        MaterialAlertDialogBuilder(requireContext(),R.style.CoresFilme)
             .setTitle("Remover ${filme.tittle} ?")
             .setMessage("Deseja remover '${filme.tittle}' da sua lista?")
             .setPositiveButton("SIM") { dialog, _ ->
@@ -90,9 +90,9 @@ class QueroVerFragment: Fragment() {
     }
 
     private fun vaiParaJaVi(filme: Filme){
-        MaterialAlertDialogBuilder(requireContext(), R.style.Theme_MaterialComponents_DayNight)
+        MaterialAlertDialogBuilder(requireContext(), R.style.CoresFilme)
             .setTitle("Mover ${filme.tittle}?")
-            .setMessage("Deseja mover '${filme.tittle}' para Quero Ver?")
+            .setMessage("Deseja mover '${filme.tittle}' para Já vi?")
             .setPositiveButton(SIM) { dialog, _ ->
                 viewModel.salvaListaJavi(filme)
                 adapter?.deletaFilme(filme)

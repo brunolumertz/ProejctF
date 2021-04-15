@@ -24,27 +24,20 @@ class FilmeViewModel (
         }
     }
 
-//    fun getPesquisa(keyword: String) {
-//        viewModelScope.launch {
-//            val response = filmesrepository.getFilmesPesquisa(keyword)
-//            fPesquisaResponse.value = response
-//        }
-//    }
-
-    fun getSearchMovie(keyword: String) = viewModelScope.launch {
-        searchMovie(keyword)
+    fun getPesquisaFilme(keyword: String) = viewModelScope.launch {
+        pesquisaFilme(keyword)
     }
 
     // Obtem os resultados da pesquisa feita
-    private suspend fun searchMovie(searchQuery: String) {
+    private suspend fun pesquisaFilme(searchQuery: String) {
         fPesquisaResponse.postValue(Resource.Loading())
-        val response = filmesrepository.getSearchMovie(searchQuery)
-        fPesquisaResponse.postValue(searchMovieResponse(response))
+        val response = filmesrepository.getPesquisaFilme(searchQuery)
+        fPesquisaResponse.postValue(pesquisaFilmeResponse(response))
     }
 
 
     // Obtem os filmes através da pesquisa
-    private fun searchMovieResponse(response: Response<FilmeResponse>): Resource<FilmeResponse> {
+    private fun pesquisaFilmeResponse(response: Response<FilmeResponse>): Resource<FilmeResponse> {
         if (response.isSuccessful) {
             response.body()?.let { resultResponse ->
                 if (fPesquisaResponseNew == null) {

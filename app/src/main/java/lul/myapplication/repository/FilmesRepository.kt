@@ -47,12 +47,12 @@ class FilmesRepository (
     }
 
     suspend fun getFilmesPesquisa(keyword : String) : Response<FilmeResponse>{
-        return api.getSearchMovie(keyword)
+        return api.getPesquisaFilme(keyword)
     }
 
     // Busca os filmes pesquisados
-    suspend fun getSearchMovie(keyword: String): Response<FilmeResponse> {
-        return api.getSearchMovie(keyword)
+    suspend fun getPesquisaFilme(keyword: String): Response<FilmeResponse> {
+        return api.getPesquisaFilme(keyword)
     }
 
 }

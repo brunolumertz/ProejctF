@@ -9,7 +9,6 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_pesquisa.*
 import kotlinx.coroutines.Job
@@ -60,7 +59,7 @@ class PesquisaFragment : Fragment() {
                 delay(PESQUISA_DELAY)
                 editable?.let {
                     if (editable.toString().isNotEmpty()) {
-                        viewModel.getSearchMovie(editable.toString())
+                        viewModel.getPesquisaFilme(editable.toString())
                     }
                 }
             }
@@ -99,13 +98,13 @@ class PesquisaFragment : Fragment() {
 
     private fun configAdapterRecyclerView() {
         adapter?.onItemClickListener = {
-            goToMovieDetails(it)
+            vaiParaDetalhesFilme(it)
         }
         rv_pesquisa.adapter = adapter
         rv_pesquisa.layoutManager = GridLayoutManager(context, 3)
     }
 
-    private fun goToMovieDetails(filme: Filme) {
+    private fun vaiParaDetalhesFilme(filme: Filme) {
         val details = DetalhesFilmeFragment(filme)
         val fragmentManager = activity?.supportFragmentManager
         val transaction = fragmentManager?.beginTransaction()
@@ -114,12 +113,4 @@ class PesquisaFragment : Fragment() {
         transaction?.commit()
     }
 
-//    private val controller by lazy {
-//        findNavController()
-//    }
-//
-//    private fun goToMovieDetails(filme: Filme) {
-//        val direction = PesquisaFragment.action_app_bar_search_to_filme_detalhes(filme)
-//        controller.navigate(direction)
-//    }
 }
