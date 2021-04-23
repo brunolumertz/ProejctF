@@ -15,11 +15,11 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import lul.myapplication.MyApplication
-import lul.myapplication.PESQUISA_DELAY
+import lul.myapplication.util.Constantes.Companion.PESQUISA_DELAY
+import lul.myapplication.util.MyApplication
 import lul.myapplication.R
 import lul.myapplication.models.Filme
-import lul.myapplication.ui.Resource
+import lul.myapplication.util.Resource
 import lul.myapplication.ui.adapter.PesquisaAdapter
 import lul.myapplication.ui.detalhes.DetalhesFilmeFragment
 

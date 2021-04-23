@@ -1,4 +1,4 @@
-package lul.myapplication
+package lul.myapplication.util
 
 import android.app.Application
 import lul.myapplication.dao.DataBase

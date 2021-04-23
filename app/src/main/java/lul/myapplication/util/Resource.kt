@@ -1,4 +1,4 @@
-package lul.myapplication.ui
+package lul.myapplication.util
 
 open class Resource<T>(val data: T? = null, val message: String? = null) {
 

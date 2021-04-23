@@ -5,13 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_filme.*
-import lul.myapplication.MyApplication
+import lul.myapplication.util.MyApplication
 import lul.myapplication.R
 import lul.myapplication.models.Filme
 import lul.myapplication.ui.adapter.FilmeAdapter

@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import lul.myapplication.models.FilmeResponse
 import lul.myapplication.repository.FilmesRepository
-import lul.myapplication.ui.Resource
+import lul.myapplication.util.Resource
 import retrofit2.Response
 
 class FilmeViewModel (

@@ -1,4 +1,4 @@
-package lul.myapplication
+package lul.myapplication.ui.activitys
 
 import android.app.Activity
 import android.content.Intent
@@ -7,21 +7,19 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.view.MenuItem
-import android.view.View
-import android.widget.SimpleAdapter
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.fragment_filme.*
 import kotlinx.android.synthetic.main.nav_menu_lateral.*
+import lul.myapplication.R
+import lul.myapplication.util.Constantes.Companion.SELECT_PICTURE
+import lul.myapplication.util.Constantes.Companion.TAKE_PICTURE
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -51,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
+    //Menu lateral
     private fun configuraDrawble(){
         toggle = ActionBarDrawerToggle(this,drawerLayout, R.string.abrir, R.string.fechar)
         drawerLayout.addDrawerListener(toggle)
@@ -62,8 +61,11 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.camera_menu_item -> abreCamera()
                 R.id.galeria_menu_item -> abreGaleria()
+                R.id.mapa_menu_item -> {
+                    val intent = Intent(this, MapsActivity::class.java)
+                    startActivity(intent)
+                }
                 R.id.configura_menu_item -> Toast.makeText(this, "Clicked item three", Toast.LENGTH_SHORT)
-                R.id.mapa_menu_item -> Toast.makeText(this, "Clicked item three", Toast.LENGTH_SHORT)
             }
             true
         }
@@ -77,6 +79,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //Câmera
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == TAKE_PICTURE && resultCode == Activity.RESULT_OK){
@@ -137,5 +140,7 @@ class MainActivity : AppCompatActivity() {
         currentPath = image.absolutePath
         return image
     }
+
+
 
 }

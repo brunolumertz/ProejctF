@@ -10,10 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.fragment_ja_vi.*
-import lul.myapplication.MyApplication
-import lul.myapplication.NÃO
+import lul.myapplication.util.Constantes.Companion.NÃO
+import lul.myapplication.util.Constantes.Companion.SIM
+import lul.myapplication.util.MyApplication
 import lul.myapplication.R
-import lul.myapplication.SIM
 import lul.myapplication.models.Filme
 import lul.myapplication.ui.adapter.FilmeLocalAdapter
 import lul.myapplication.ui.minhalista.MinhaListaViewModel

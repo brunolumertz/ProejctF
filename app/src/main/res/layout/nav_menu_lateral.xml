@@ -13,6 +13,7 @@
         android:id="@+id/foto_do_perfil"/>
 
     <TextView
+        android:id="@+id/texto_nome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/foto_do_perfil"

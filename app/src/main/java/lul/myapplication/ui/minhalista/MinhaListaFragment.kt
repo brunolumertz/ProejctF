@@ -5,10 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.android.synthetic.main.fragment_minhalista.*
-import lul.myapplication.JAVI
-import lul.myapplication.QUEROVER
+import lul.myapplication.util.Constantes.Companion.JAVI
+import lul.myapplication.util.Constantes.Companion.QUEROVER
 import lul.myapplication.R
 import lul.myapplication.ui.adapter.TabelaAdapter
 import lul.myapplication.ui.minhalista.tabelas.JaViFragment

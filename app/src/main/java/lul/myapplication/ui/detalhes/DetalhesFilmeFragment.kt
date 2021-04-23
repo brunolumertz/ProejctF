@@ -15,15 +15,26 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.fragment_filme_detalhes.*
 import lul.myapplication.*
+import lul.myapplication.util.Constantes.Companion.ADD_FILME_MENSAGEM_JAVI
+import lul.myapplication.util.Constantes.Companion.ADD_FILME_MENSAGEM_QUEROVER
+import lul.myapplication.util.Constantes.Companion.CANCELAR
+import lul.myapplication.util.Constantes.Companion.INITIAL_INDEX
+import lul.myapplication.util.Constantes.Companion.JAVI
+import lul.myapplication.util.Constantes.Companion.QUEROVER
+import lul.myapplication.util.Constantes.Companion.SALVAR
 import lul.myapplication.models.Filme
 import lul.myapplication.models.FilmeDetalhes
+import lul.myapplication.util.MyApplication
 import retrofit2.Response
 
 
 class DetalhesFilmeFragment(val filme: Filme) : Fragment() {
 
     var index = INITIAL_INDEX
-    private val lista = arrayOf(JAVI, QUEROVER)
+    private val lista = arrayOf(
+        JAVI,
+        QUEROVER
+    )
 
     private val viewModel: DetalhesFilmeViewModel by viewModels {
         DetalhesFilmeViewModelFactory((activity?.application as MyApplication).repository)
@@ -70,7 +81,7 @@ class DetalhesFilmeFragment(val filme: Filme) : Fragment() {
     private fun configuraDialogFilme(){         // configura pra abrir o dialog
         var selecionaItem = lista[index]
 
-        MaterialAlertDialogBuilder(requireContext(),R.style.Theme_MaterialComponents_DayNight)
+        MaterialAlertDialogBuilder(requireContext(),R.style.MaterialAlertDialog_Theme)
             .setTitle(R.string.adiciona_filme).setSingleChoiceItems(lista, index){ _, which ->
                 index = which
                 selecionaItem = lista[which]
