@@ -18,8 +18,7 @@ class FilmesRepository (
     val filmesJaVi: Flow<List<Filme>> = dao.buscaJaVi()
     val filmesQueroVer: Flow<List<Filme>> = dao.buscaQueroVer()
 
-    suspend fun getFilmesPopulares()
-            :Response<FilmeResponse>{
+    suspend fun getFilmesPopulares():Response<FilmeResponse>{
         return api.getListaFilme()
     }
 

@@ -1,33 +1,29 @@
 package lul.myapplication.ui.activitys
 
-import android.app.Activity
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
-import android.provider.MediaStore
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.FileProvider
 import androidx.core.view.GravityCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_menu_lateral.*
 import lul.myapplication.R
-import lul.myapplication.util.Constantes.Companion.SELECT_PICTURE
-import lul.myapplication.util.Constantes.Companion.TAKE_PICTURE
-import java.io.File
-import java.io.IOException
-import java.text.SimpleDateFormat
-import java.util.*
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var fba: FirebaseAuth
     private lateinit var toggle: ActionBarDrawerToggle
     var currentPath: String? = null
 
@@ -35,9 +31,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        fba = FirebaseAuth.getInstance()
+
         configuraNavController()
         configuraDrawble()
-
+        fecthUser()
     }
 
     private fun configuraNavController() {
@@ -50,8 +48,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     //Menu lateral
-    private fun configuraDrawble(){
-        toggle = ActionBarDrawerToggle(this,drawerLayout, R.string.abrir, R.string.fechar)
+    private fun configuraDrawble() {
+        toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.abrir, R.string.fechar)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
@@ -59,88 +57,92 @@ class MainActivity : AppCompatActivity() {
 
         nav_menu_view.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.camera_menu_item -> abreCamera()
-                R.id.galeria_menu_item -> abreGaleria()
+                R.id.camera_menu_item -> Toast.makeText(
+                    this,
+                    "Clicked item three",
+                    Toast.LENGTH_LONG
+                )
                 R.id.mapa_menu_item -> {
                     val intent = Intent(this, MapsActivity::class.java)
                     startActivity(intent)
                 }
-                R.id.configura_menu_item -> Toast.makeText(this, "Clicked item three", Toast.LENGTH_SHORT)
+                R.id.configura_menu_item -> Toast.makeText(
+                    this,
+                    "Clicked item three",
+                    Toast.LENGTH_LONG
+                )
+                R.id.botao_de_logout -> desconectar()
             }
             true
         }
     }
 
     override fun onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
-        }else{
+        } else {
             super.onBackPressed()
         }
     }
 
-    //Câmera
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == TAKE_PICTURE && resultCode == Activity.RESULT_OK){
-            try {
-                val file = File(currentPath)
-                val uri = Uri.fromFile(file)
-                foto_do_perfil.setImageURI(uri)
-            }catch (e: IOException){
-                e.printStackTrace()
-            }
-        }
-        if (requestCode == SELECT_PICTURE && resultCode == Activity.RESULT_OK){
-            try {
-                val uri = data!!.data
-                foto_do_perfil.setImageURI(uri)
-            }catch (e: IOException){
-                e.printStackTrace()
-            }
-        }
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (toggle.onOptionsItemSelected(item)){
+        if (toggle.onOptionsItemSelected(item)) {
             return true
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun abreCamera(){
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        if (intent.resolveActivity(packageManager) != null){
-            var photoFile: File? = null
-            try {
-                photoFile = criaImagem()
-            }catch (e: IOException){
-                e.printStackTrace()
+//    private fun abreCamera(){
+//        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//        if (intent.resolveActivity(packageManager) != null){
+//            var photoFile: File? = null
+//            try {
+//                photoFile = criaImagem()
+//            }catch (e: IOException){
+//                e.printStackTrace()
+//            }
+//            if (photoFile != null){
+//                var photoUri = FileProvider.getUriForFile(this, "lul.myapplication.fileprovider", photoFile)
+//                intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
+//                startActivityForResult(intent, TAKE_PICTURE)
+//            }
+//        }
+//    }
+
+
+//    private fun criaImagem(): File {
+//        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+//        val imageName ="JPEG_"+timeStamp+"_"
+//        var storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+//        var image = File.createTempFile(imageName, ".jpg", storageDir)
+//        currentPath = image.absolutePath
+//        return image
+//    }
+
+
+    private fun desconectar() {
+        fba.signOut()
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun fecthUser() {
+        val ref = FirebaseDatabase.getInstance().getReference("/users")
+        ref.addListenerForSingleValueEvent(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                snapshot.children.forEach{
+                    it.toString()
+                    val user = it.getValue(User::class.java)
+                    texto_nome_nav_menu.text = user!!.name
+                    Glide.with(this@MainActivity).load(user.profileImageUrl).into(foto_do_perfil)
+//                    Glide.with(this).load("http://goo.gl/gEgYUd").into(imageView)
+                }
             }
-            if (photoFile != null){
-                var photoUri = FileProvider.getUriForFile(this, "lul.myapplication.fileprovider", photoFile)
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
-                startActivityForResult(intent, TAKE_PICTURE)
+            override fun onCancelled(error: DatabaseError) {
+                TODO()
             }
-        }
+        })
     }
-
-    private fun abreGaleria(){
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(Intent.createChooser(intent, "Selecione a imagem"), SELECT_PICTURE)
-    }
-
-    private fun criaImagem(): File {
-        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        val imageName ="JPEG_"+timeStamp+"_"
-        var storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        var image = File.createTempFile(imageName, ".jpg", storageDir)
-        currentPath = image.absolutePath
-        return image
-    }
-
 
 
 }

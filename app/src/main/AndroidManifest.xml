@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="lul.myapplication">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -12,7 +11,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-feature
         android:name="android.hardware.camera2"
@@ -29,6 +28,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+        android:usesCleartextTraffic="true"
+        <activity android:name=".ui.activitys.CadastroActivity"></activity>
+        <activity android:name=".ui.activitys.MainActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -36,9 +38,8 @@
 
         <activity
             android:name=".ui.activitys.MapsActivity"
-            android:label="@string/title_activity_maps"/>
-
-        <activity android:name=".ui.activitys.MainActivity">
+            android:label="@string/title_activity_maps" />
+        <activity android:name=".ui.activitys.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

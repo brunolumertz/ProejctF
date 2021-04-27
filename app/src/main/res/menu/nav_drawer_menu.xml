@@ -3,22 +3,27 @@
 
     <item
         android:id="@+id/camera_menu_item"
-        android:title="Câmera"
-        android:icon="@drawable/ic_camera_image" />
+        android:icon="@drawable/ic_camera_image"
+        android:title="Câmera" />
 
     <item
         android:id="@+id/galeria_menu_item"
-        android:title="Galeria"
-        android:icon="@drawable/ic_gallery_image" />
+        android:icon="@drawable/ic_gallery_image"
+        android:title="Galeria" />
 
     <item
         android:id="@+id/mapa_menu_item"
-        android:title="Mapa"
-        android:icon="@drawable/ic_map_image" />
+        android:icon="@drawable/ic_map_image"
+        android:title="Mapa" />
 
     <item
         android:id="@+id/configura_menu_item"
-        android:title="Configurações"
-        android:icon="@drawable/ic_config_image"/>
+        android:icon="@drawable/ic_config_image"
+        android:title="Configurações" />
+
+    <item
+        android:id="@+id/botao_de_logout"
+        android:icon="@drawable/ic_imagem_logout"
+        android:title="Sair" />
 
 </menu>

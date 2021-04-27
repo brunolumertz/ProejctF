@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "323568757049",
+    "project_id": "projetoteste-bc833",
+    "storage_bucket": "projetoteste-bc833.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:323568757049:android:d23736b2aef7afd72fa0e8",
+        "android_client_info": {
+          "package_name": "lul.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "323568757049-3bgkrfm786pm9jl115b29tj6keo58hpj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwcojMnMLjsCgOAS5ATKSm47lc5yTqgY0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "323568757049-3bgkrfm786pm9jl115b29tj6keo58hpj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
