@@ -1,9 +1,12 @@
 package lul.myapplication.ui.activitys
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
+import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -28,6 +31,34 @@ class LoginActivity : AppCompatActivity() {
         login_botao.setOnClickListener {
             fazLogin()
         }
+
+        texto_esqueceu_senha.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Esqueci a senha:")
+            val view = layoutInflater.inflate(R.layout.dialog_esqueceu_senha, null)
+            val username = view.findViewById<EditText>(R.id.campo_email_para_resetar_senha)
+            builder.setView(view)
+            builder.setPositiveButton("Resetar senha", DialogInterface.OnClickListener { _, _ ->
+                esqueceuSenha(username)
+            })
+            builder.setNegativeButton("Fechar", DialogInterface.OnClickListener { _, _ -> })
+            builder.show()
+        }
+    }
+
+    private fun esqueceuSenha(username: EditText) {
+        if (username.text.toString().isEmpty()) {
+            return
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(username.text.toString()).matches()) {
+            return
+        }
+        fba.sendPasswordResetEmail(username.text.toString())
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Email enviado.", Toast.LENGTH_LONG).show()
+                }
+            }
     }
 
     private fun fazLogin() {

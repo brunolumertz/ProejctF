@@ -33,7 +33,7 @@ class CadastroActivity : AppCompatActivity() {
         }
 
         texto_login_agora.setOnClickListener {
-            startActivity(Intent(this, CadastroActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
 
