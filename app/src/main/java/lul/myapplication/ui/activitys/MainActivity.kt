@@ -10,6 +10,7 @@ import androidx.core.view.GravityCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.Glide
+import com.facebook.login.LoginManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -19,6 +20,7 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_menu_lateral.*
 import lul.myapplication.R
+
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
@@ -32,6 +34,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         fba = FirebaseAuth.getInstance()
+
+//        Glide.with(this).load(currentuser?.photoUrl).into(foto_do_perfil)
 
         configuraNavController()
         configuraDrawble()
@@ -52,6 +56,8 @@ class MainActivity : AppCompatActivity() {
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.abrir, R.string.fechar)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
+
+
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -92,45 +98,19 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-//    private fun abreCamera(){
-//        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-//        if (intent.resolveActivity(packageManager) != null){
-//            var photoFile: File? = null
-//            try {
-//                photoFile = criaImagem()
-//            }catch (e: IOException){
-//                e.printStackTrace()
-//            }
-//            if (photoFile != null){
-//                var photoUri = FileProvider.getUriForFile(this, "lul.myapplication.fileprovider", photoFile)
-//                intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
-//                startActivityForResult(intent, TAKE_PICTURE)
-//            }
-//        }
-//    }
-
-
-//    private fun criaImagem(): File {
-//        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-//        val imageName ="JPEG_"+timeStamp+"_"
-//        var storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-//        var image = File.createTempFile(imageName, ".jpg", storageDir)
-//        currentPath = image.absolutePath
-//        return image
-//    }
-
-
     private fun desconectar() {
         fba.signOut()
+        LoginManager.getInstance().logOut()
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
     private fun fecthUser() {
         val ref = FirebaseDatabase.getInstance().getReference("/users")
-        ref.addListenerForSingleValueEvent(object: ValueEventListener {
+        ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                snapshot.children.forEach{
+                snapshot.children.forEach {
                     it.toString()
                     val user = it.getValue(User::class.java)
                     texto_nome_nav_menu.text = user!!.name
@@ -138,6 +118,7 @@ class MainActivity : AppCompatActivity() {
 //                    Glide.with(this).load("http://goo.gl/gEgYUd").into(imageView)
                 }
             }
+
             override fun onCancelled(error: DatabaseError) {
                 TODO()
             }
