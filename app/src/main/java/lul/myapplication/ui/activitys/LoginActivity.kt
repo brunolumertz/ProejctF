@@ -26,6 +26,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import lul.myapplication.R
 import com.facebook.FacebookSdk
 import com.facebook.appevents.AppEventsLogger
+import java.lang.RuntimeException
 
 @Suppress("DEPRECATION")
 class LoginActivity : AppCompatActivity() {
@@ -82,6 +83,8 @@ class LoginActivity : AppCompatActivity() {
             builder.setNegativeButton("Fechar", DialogInterface.OnClickListener { _, _ -> })
             builder.show()
         }
+
+//        throw RuntimeException("Test Crash")
     }
 
     private fun logarFB() {

@@ -35,8 +35,6 @@ class MainActivity : AppCompatActivity() {
 
         fba = FirebaseAuth.getInstance()
 
-//        Glide.with(this).load(currentuser?.photoUrl).into(foto_do_perfil)
-
         configuraNavController()
         configuraDrawble()
         fecthUser()
@@ -56,8 +54,6 @@ class MainActivity : AppCompatActivity() {
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.abrir, R.string.fechar)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
-
-
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
