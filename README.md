@@ -6,7 +6,7 @@ Tendo tbm a possibilidade de criar uma lista sua, para auxiliar com os filmes qu
 Faz a utilização da api da IMDb para retornar os filmes
 * https://developer.imdb.com/
 
-Aglumas bibliotecas e dependencias utilizadas:
+Algumas bibliotecas e dependencias utilizadas:
 * Retrofit
 https://square.github.io/retrofit/
 
